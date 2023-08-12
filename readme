@@ -1,0 +1,13 @@
+This project was developed with:
+IntelliJ IDEA 2023.1.2 (Community Edition)
+Java 17
+Spring Boot 3.1.0
+Maven 4.0.0
+
+Server: localhost:8080
+MyQSL Database: localhost:3306
+Username: root
+Password: root
+These are editable in application.properties.
+
+Report, DB schema and .jar: https://drive.google.com/drive/folders/1t4amfO62qT3Uppis5DNHUdp8i4zmt0Pu?usp=sharing
