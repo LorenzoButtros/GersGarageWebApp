@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule View</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Admin - Day Schedules</h1>
+
+<h2 class="marginLeft" th:text="${dayBookings[0].datein}"></h2>
+
+<table class="user-table">
+    <tr>
+        <th>Time Slot</th>
+        <th>Client</th>
+        <th>Vehicle</th>
+        <th>Service</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Staff</th>
+        <th>Action</th>
+    </tr>
+    <!-- Iterate over the time slots -->
+    <tr th:each="bookings : ${dayBookings}">
+        <!-- Display time slot information in the first two columns -->
+
+        <td th:text="${bookings.timein}"></td>
+        <td th:text="${usersMap.get(bookings.user)}"></td>
+        <td th:text="${vehiclesMap.get(bookings.vehicle)}"></td>
+        <td th:text="${servicesMap.get(bookings.service)}"></td>
+        <td th:text="${bookings.price}"></td>
+        <td th:text="${bookings.status}"></td>
+        <td th:text="${staffMap.get(bookings.staff) ?: 'N/A'}"></td>
+        <td>
+            <a class="edit-link" th:href="@{/admin/schedule/edit/{date}/{id}(date=${bookings.datein},id=${bookings.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+<br><br>
+<button class="userButton" onclick="window.location.href='/admin/schedule'">Back to Schedule</button>
+
+</body>
+</html>

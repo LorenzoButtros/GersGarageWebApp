@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User List</title>
+  <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">User List</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>Login</th>
+  </tr>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.mobile}"></td>
+    <td th:text="${user.login}"></td>
+  </tr>
+</table>
+</body>
+</html>

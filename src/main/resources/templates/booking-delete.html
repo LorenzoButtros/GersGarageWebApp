@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Booking</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Delete Booking</h1>
+
+<div class="marginLeft">
+
+<p>Are you sure you want to delete this booking?</p>
+
+    <div>
+        <label>ID:</label>
+        <span th:text="${booking.id}"></span>
+
+    </div>
+    <br>
+    <div>
+        <label>User:</label>
+        <span th:text="${booking.user}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Vehicle:</label>
+        <span th:text="${booking.vehicle}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Service:</label>
+        <span th:text="${booking.service}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Date In:</label>
+        <span th:text="${booking.datein}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Time In:</label>
+        <span th:text="${booking.timein}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Date Out:</label>
+        <span th:text="${booking.dateout}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Time Out:</label>
+        <span th:text="${booking.timeout}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Status:</label>
+        <span th:text="${booking.status}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Price:</label>
+        <span th:text="${booking.price}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Staff:</label>
+        <span th:text="${booking.staff}"></span>
+    </div>
+
+</div>
+
+<form class="delete-form" action="/admin/bookings/delete" method="post">
+    <input type="hidden" id="id" name="id" th:value="${booking.id}">
+    <button class="form-button" type="submit">Delete</button>
+</form>
+
+<button class="userButton" onclick="window.location.href='/admin/bookings/'">Back to Bookings</button>
+
+</body>
+</html>

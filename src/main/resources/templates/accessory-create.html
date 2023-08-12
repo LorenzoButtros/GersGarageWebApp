@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Accessory</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Create Accessory</h1>
+
+
+
+<form class="create-form" action="/admin/accessories" method="post" th:action="@{/admin/accessories}" th:object="${accessory}">
+
+    <label for="item">Item:</label>
+    <input class="form-input" type="text" id="item" name="item" required><br><br>
+
+    <label for="brand">Brand:</label>
+    <input class="form-input" type="text" id="brand" name="brand" required><br><br>
+
+    <label for="section">Section:</label>
+    <input class="form-input" type="text" id="section" name="section" required><br><br>
+
+    <label for="price">Price:</label>
+    <input class="form-input" type="text" id="price" name="price" required><br><br>
+
+    <label for="instock">In Stock:</label>
+    <input class="form-input" type="text" id="instock" name="instock" required><br><br>
+
+    <label for="description">Description:</label>
+    <input class="form-input" type="text" id="description" name="description" required><br><br>
+
+    <label for="image">Image:</label>
+    <input class="form-input" type="text" id="image" name="image" required><br><br>
+
+    <button class="form-button" type="submit">Create</button>
+    <button class="userButton" onclick="window.location.href='/admin/accessories/'">Back to Accessories</button>
+
+</form>
+
+</body>
+</html>

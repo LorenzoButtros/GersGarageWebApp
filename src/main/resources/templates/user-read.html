@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Users</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Admin - Users</h1>
+
+<button class="userButton" onclick="window.location.href='/admin/users/create'">Create User</button>
+<button class="userButton" onclick="window.location.href='/admin'">Back to Menu</button>
+
+<table class="user-table">
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Role</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.mobile}"></td>
+        <td th:text="${user.role}"></td>
+        <td>
+            <a class="edit-link" th:href="@{/admin/users/update/{id}(id=${user.id})}">Edit</a>
+            <a class="delete-link" th:href="@{/admin/users/delete/{id}(id=${user.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

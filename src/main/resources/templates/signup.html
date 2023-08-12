@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Sign Up</h1>
+
+
+
+<form class="create-form" action="/auth/signup" method="post" th:action="@{/auth/signup}" th:object="${user}">
+
+    <label for="firstName">First Name:</label>
+    <input class="form-input" type="text" id="firstName" name="firstName" required><br><br>
+
+    <label for="lastName">Last Name:</label>
+    <input class="form-input" type="text" id="lastName" name="lastName" required><br><br>
+
+    <label for="email">Email:</label>
+    <input class="form-input" type="email" id="email" name="email" required><br><br>
+
+    <label for="mobile">Mobile:</label>
+    <input class="form-input" type="mobile" id="mobile" name="mobile" required><br><br>
+
+    <label for="password">Password:</label>
+    <input class="form-input" type="password" id="password" name="password" required><br><br>
+
+    <button class="form-button" type="submit">Sign Up</button>
+    <button class="userButton" onclick="window.location.href='/'">Back to Home</button>
+</form>
+
+</body>
+</html>

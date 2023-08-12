@@ -1,0 +1,4 @@
+### spring.datasource.url=jdbc:mysql://garage-db-1.csqb5j8okofo.eu-west-1.rds.amazonaws.com:3306/garagedb?useSSL=false
+### spring.datasource.username=admin
+### spring.datasource.password=5o62BzvuNo53WAOLHUSv
+### spring.main.web-application-type=none

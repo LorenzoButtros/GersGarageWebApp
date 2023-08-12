@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Part</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Delete Part</h1>
+
+<div class="marginLeft">
+
+    <p>Are you sure you want to delete this part?</p>
+
+    <div>
+        <label>ID:</label>
+        <span th:text="${part.id}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Part:</label>
+        <span th:text="${part.part}"></span>
+    </div>
+    <br>
+    <div>
+        <label>Make:</label>
+        <span th:text="${part.make}"></span>
+    </div>
+
+</div>
+
+<form class="delete-form" action="/admin/parts/delete" method="post">
+    <input type="hidden" id="id" name="id" th:value="${part.id}">
+    <button class="form-button" type="submit">Delete</button>
+</form>
+
+<button class="userButton" onclick="window.location.href='/admin/parts/'">Back to Parts</button>
+
+</body>
+</html>

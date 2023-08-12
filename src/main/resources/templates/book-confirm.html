@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking - Confirm</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="other-parts">
+  <h2>Booking - Confirm your booking</h2>
+  <p>Please confirm your booking below:</p>
+</div>
+
+<div class="other-parts">
+
+  <h4>Vehicle Information</h4>
+  <label class="book-label">Type:</label>
+  <span th:text="${selectedVehicle.type}"></span><br>
+  <label class="book-label">License:</label>
+  <span th:text="${selectedVehicle.license}"></span><br>
+  <label class="book-label">Make:</label>
+  <span th:text="${selectedVehicle.make}"></span><br>
+  <label class="book-label">Color:</label>
+  <span th:text="${selectedVehicle.color}"></span><br>
+  <label class="book-label">Engine:</label>
+  <span th:text="${selectedVehicle.engine}"></span><br>
+  <br>
+
+
+  <h4>Service Information</h4>
+  <label class="book-label">Service:</label>
+  <span th:text="${selectedService.service}"></span><br>
+  <label class="book-label">Base Price: €</label>
+  <span th:text="${selectedService.price}"></span><br>
+  <label class="book-label">We will call you for confirmation before applying any additional costs.</label>
+  <br><br>
+
+
+  <h4>Time Slot Information</h4>
+  <label class="book-label">Day:</label>
+  <span th:text="${selectedDay}"></span><br>
+  <label class="book-label">Time:</label>
+  <span th:text="${selectedTimeSlot}"></span><br>
+
+  <br><br>
+  <form action="/booking/confirm" method="post">
+  <button class="userButton" type="submit">Confirm Booking</button>
+</form>
+</div>
+
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+</body>
+</html>

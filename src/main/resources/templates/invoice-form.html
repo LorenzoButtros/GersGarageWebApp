@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Form</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Invoice Form</h1>
+
+<button class="userButton" onclick="window.location.href='/admin'">Back to Menu</button>
+
+<form class="create-form" action="/admin/create-invoice" method="post" th:action="@{/admin/create-invoice}" th:object="${invoice}">
+
+    <label for="user">User:</label>
+    <select class="form-input" id="user" name="user" th:field="*{user}">
+        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.firstName + ' ' + user.lastName}"></option>
+    </select><br><br>
+
+    <label for="license">License:</label>
+    <input class="form-input" type="text" id="license" name="license"><br><br>
+
+    <label for="make">Make:</label>
+    <input class="form-input" type="text" id="make" name="make"><br><br>
+
+    <label for="services">Services:</label>
+    <select class="form-input" id="services" name="services" multiple>
+        <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.service}"></option>
+    </select><br><br>
+
+    <label for="accessories">Accessories:</label>
+    <select class="form-input" id="accessories" name="accessories" multiple>
+        <option th:each="accessory : ${accessories}" th:value="${accessory.id}" th:text="${accessory.item}"></option>
+    </select><br><br>
+
+    <label for="parts">Parts:</label>
+    <select class="form-input" id="parts" name="parts" multiple>
+        <option th:each="part : ${parts}" th:value="${part.id}" th:text="${part.part}"></option>
+    </select><br><br>
+
+    <button class="form-button" type="submit">Create</button>
+</form>
+
+</body>
+</html>
+

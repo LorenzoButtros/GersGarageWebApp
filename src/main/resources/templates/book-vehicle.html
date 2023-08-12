@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking - Vehicle</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="other-parts">
+  <h2>Booking - Select a Vehicle</h2>
+  <p>Select one of your registered vehicles below:</p>
+  <p class="warning" th:if="${#lists.isEmpty(userVehicles)}">Warning: You have no registered vehicles. Register at least one at <a th:href="@{/account/vehicles}">Account - Vehicles</a>.</p>
+
+</div>
+<div class="other-parts">
+  <!-- Vehicle selection form -->
+  <form action="/booking/vehicle" method="post" id="vehicleForm" th:action="@{/booking/vehicle}" th:object="${selectedVehicle}">
+
+    <select id=vehicle name="selectedVehicleId" onchange="displayVehicleDetails(this)">
+      <option value="">Select a vehicle</option>
+      <!-- Loop through the vehicles and populate the dropdown menu -->
+      <th:block th:each="vehicle : ${userVehicles}">
+        <option th:value="${vehicle.id}" th:text="${vehicle.license}"
+                th:data-type="${vehicle.type}"
+                th:data-license="${vehicle.license}"
+                th:data-make="${vehicle.make}"
+                th:data-color="${vehicle.color}"
+                th:data-engine="${vehicle.engine}">
+        </option>
+      </th:block>
+    </select>
+    <br><br>
+    <!-- Labels to display selected vehicle details -->
+    <label class="book-label">Type:</label>
+    <span id="vehicleType"></span><br>
+    <label class="book-label">License:</label>
+    <span id="vehicleLicense"></span><br>
+    <label class="book-label">Make:</label>
+    <span id="vehicleMake"></span><br>
+    <label class="book-label">Color:</label>
+    <span id="vehicleColor"></span><br>
+    <label class="book-label">Engine:</label>
+    <span id="vehicleEngine"></span><br>
+    <br><br>
+    <button class="userButton" type="submit" id="submitButton" th:attr="disabled=${true}">Submit</button>
+  </form>
+</div>
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+<script>
+  function displayVehicleDetails(selectElement) {
+    var selectedIndex = selectElement.selectedIndex;
+    if (selectedIndex !== 0) {
+      var selectedVehicle = selectElement.options[selectedIndex].dataset;
+      // Update the HTML elements with the selected vehicle details
+      document.getElementById('vehicleType').textContent = selectedVehicle.type;
+      document.getElementById('vehicleLicense').textContent = selectedVehicle.license;
+      document.getElementById('vehicleMake').textContent = selectedVehicle.make;
+      document.getElementById('vehicleColor').textContent = selectedVehicle.color;
+      document.getElementById('vehicleEngine').textContent = selectedVehicle.engine;
+      // Enable the submit button when a vehicle is selected
+      document.getElementById('submitButton').removeAttribute('disabled');
+    } else {
+      // Clear the vehicle details if no vehicle is selected
+      document.getElementById('vehicleType').textContent = '';
+      document.getElementById('vehicleLicense').textContent = '';
+      document.getElementById('vehicleMake').textContent = '';
+      document.getElementById('vehicleColor').textContent = '';
+      document.getElementById('vehicleEngine').textContent = '';
+      // Disable the submit button if no vehicle is selected
+      document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+    }
+  }
+</script>
+
+</body>
+</html>

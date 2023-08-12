@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking - Time</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="/css/carousel.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="other-parts">
+  <div class="first-part-text">
+    <h2>Booking - Select a Date and Time</h2>
+    <p>Select an available date and time below:</p>
+  </div>
+
+</div>
+<div class="other-parts">
+  <form action="/booking/time" method="post" th:action="@{/booking/time}" th:object="${bookingForm}">
+    <div class="day-carousel">
+      <!-- Iterate over the days and time slots -->
+      <div th:each="day : ${days}" class="day">
+        <!-- Use Thymeleaf attribute expression to evaluate the variable -->
+        <h3 th:text="${day.date.dayOfWeek}"></h3> <!-- Display the day of the week -->
+        <h3 th:text="${day.date}"></h3> <!-- Display the date -->
+        <!-- Iterate over the time slots inside the day -->
+        <div th:each="timeSlot : ${day.timeSlots}" class="time-slot">
+          <!-- Use data attributes to store the selected date and time -->
+
+          <input type="radio" th:id="${day.date + '-' + timeSlot.time}" th:name="selectedDateTime" th:value="${day.date + ',' + timeSlot.time}"
+                 th:disabled="${!timeSlot.available}" data-date="${day.date}" data-time="${timeSlot.time}" onchange="updateSelectedDateTime(this)" />
+          <label th:for="${day.date + '-' + timeSlot.time}" th:text="${timeSlot.time}"></label>
+
+        </div>
+      </div>
+    </div>
+    <br>
+    <button type="button" class="carousel-button userButton back-button" onclick="scrollDays(-1)">Back</button>
+    <button type="button" class="carousel-button userButton forward-button" onclick="scrollDays(1)">Forward</button>
+    <br><br><br>
+    <button class="userButton" type="submit">Submit</button>
+    <!-- Hidden input fields to store the selected date and time -->
+    <input type="hidden" id="selectedDay" name="selectedDay" th:attr="value=${bookingForm.selectedDay}" />
+    <input type="hidden" id="selectedTimeSlot" name="selectedTimeSlot" th:attr="value=${bookingForm.selectedTimeSlot}" />
+</form>
+</div>
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+<script th:inline="javascript">
+
+    function scrollDays(direction) {
+        var carousel = document.querySelector('.day-carousel');
+        var days = carousel.querySelectorAll('.day');
+        var scrollAmount = days[0].offsetWidth + 5; // Consider padding between days (adjust as needed)
+        carousel.scrollBy(scrollAmount * direction, 0);
+    }
+
+    function updateSelectedDateTime(radioButton) {
+        if (radioButton.checked) {
+            // Get the selected date and time from the radio button's data attributes
+            var selectedDateTime = radioButton.getAttribute('data-datetime');
+            var [selectedDateStr, selectedTimeStr] = selectedDateTime.split(',');
+
+            // Set the values of the hidden input fields with the selected date and time
+            document.getElementById('selectedDay').value = selectedDateStr;
+            document.getElementById('selectedTimeSlot').value = selectedTimeStr;
+        }
+    }
+
+</script>
+
+</body>
+</html>

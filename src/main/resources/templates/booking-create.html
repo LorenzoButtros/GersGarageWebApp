@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Booking</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Create Booking</h1>
+
+
+<form class="create-form" action="/admin/bookings" method="post" th:action="@{/admin/bookings}" th:object="${booking}">
+
+    <label for="user">User:</label>
+    <input class="form-input" type="text" id="user" name="user" required><br><br>
+
+    <label for="vehicle">Vehicle:</label>
+    <input class="form-input" type="text" id="vehicle" name="vehicle" required><br><br>
+    <label for="service">Service:</label>
+    <input class="form-input" type="text" id="service" name="service" required><br><br>
+    <label for="datein">Date In:</label>
+    <input class="form-input" type="text" id="datein" name="datein" required><br><br>
+    <label for="timein">Time In:</label>
+    <input class="form-input" type="text" id="timein" name="timein" required><br><br>
+    <label for="dateout">Date Out:</label>
+    <input class="form-input" type="text" id="dateout" name="dateout"><br><br>
+    <label for="timeout">Time Out:</label>
+    <input class="form-input" type="text" id="timeout" name="timeout"><br><br>
+    <label for="status">Status:</label>
+    <input class="form-input" type="text" id="status" name="status" required><br><br>
+    <label for="price">Price:</label>
+    <input class="form-input" type="text" id="price" name="price"><br><br>
+    <label for="price">Staff:</label>
+    <input class="form-input" type="text" id="staff" name="staff"><br><br>
+
+    <button class="form-button" type="submit">Create</button>
+    <button class="userButton" onclick="window.location.href='/admin/bookings/'">Back to Bookings</button>
+
+</form>
+
+</body>
+</html>

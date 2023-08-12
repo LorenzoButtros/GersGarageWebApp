@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Print</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+
+    <style>
+    @media print {
+        .no-print {
+            display: none;
+        }
+    }
+    </style>
+
+</head>
+<body>
+
+<h1 class="page-title">Ger's Garage - Invoice</h1>
+
+<div class="marginLeft">
+
+    <span th:text="'Date: ' + ${date}"></span>
+    <br><br>
+    <span th:text="'Customer: ' + ${customer}"></span>
+    <br><br>
+    <span th:text="'Mobile: ' + ${mobile}"></span>
+    <br><br>
+    <span th:text="'License: ' + ${license}"></span>
+    <br><br>
+    <span th:text="'Make: ' + ${make}"></span>
+    <br><br><br>
+    <tr>
+        <td>Services:</td><br>
+    </tr>
+    <tr th:each="service : ${services}">
+        <td th:text="${service}"></td><br>
+    </tr>
+    <br><br>
+    <tr>
+        <td>Parts:</td><br>
+    </tr>
+    <tr th:each="part : ${parts}">
+        <td th:text="${part}"></td><br>
+    </tr>
+    <br><br>
+    <tr>
+        <td>Accessories:</td><br>
+    </tr>
+    <tr th:each="accessory : ${accessories}">
+        <td th:text="${accessory}"></td><br>
+    </tr>
+    <br><br>
+    <span th:text="'Total Due:   €' + ${total}"></span>
+    <br><br>
+    <span>Payment due on collection.</span>
+    <br><br>
+
+</div>
+
+<button class="userButton no-print" onclick="window.location.href='/admin/create-invoice'">Back</button>
+
+</body>
+</html>

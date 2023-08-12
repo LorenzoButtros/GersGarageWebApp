@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Repair</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="first-part">
+  <div class="first-part-text">
+    <h1>Repair</h1>
+    <p>Bring your vehicle to be repaired by the best trained and equipped mechanics in the region.</p>
+  </div>
+  <div class="first-part-image">
+    <img src="/images/repair-img.png" alt="Service Image">
+  </div>
+</div>
+
+<!-- Second Part -->
+<div class="other-parts">
+  <h2>Offered repairs</h2>
+  <p>See our offered repairs below:</p>
+  <ul>
+    <li th:each="repair : ${repairs}" th:text="${repair.service}"></li>
+  </ul>
+  <br>
+  <button class="userButton" onclick="window.location.href='/booking/vehicle'">Book Now</button>
+
+</div>
+
+<!-- Third Part -->
+<div class="other-parts">
+  <h2>Where we are</h2>
+  <p>Bring your vehicle or come have a chat with our mechanics!</p>
+  <!-- Embed Google Map with the given address -->
+  <!-- Code from https://blog.duda.co/responsive-google-maps-for-your-website -->
+  <iframe src="https://www.google.com/maps?q=30-34+Westmoreland+St,+Dublin+2,+D02+HK35&output=embed" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+
+<script th:inline="javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var tabInputs = document.querySelectorAll('input[name="tabs"]');
+    Array.prototype.forEach.call(tabInputs, function(input) {
+      input.addEventListener('change', function() {
+        var tabItemId = this.id.replace('tab', 'tab-item');
+        var tabItems = document.querySelectorAll('.tab-item');
+        Array.prototype.forEach.call(tabItems, function(tabItem) {
+          tabItem.classList.remove('active');
+        });
+        document.getElementById(tabItemId).classList.add('active');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

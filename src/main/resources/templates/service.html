@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Service</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="first-part">
+  <div class="first-part-text">
+    <h1>Service</h1>
+    <p>Bring your vehicle to be serviced by the best trained and equipped mechanics in the region.</p>
+  </div>
+  <div class="first-part-image">
+    <img src="/images/service-img.png" alt="Service Image">
+  </div>
+</div>
+
+<div class="other-parts">
+  <h2>Specific services</h2>
+  <p>See our offered specific services below:</p>
+  <ul>
+    <li th:each="service : ${services}" th:text="${service.service}"></li>
+  </ul>
+  <br>
+  <button class="userButton" onclick="window.location.href='/booking/vehicle'">Book Now</button>
+</div>
+
+<!-- Second Part -->
+<div class="other-parts">
+  <h2>Service Packages</h2>
+  <p>Choose one of our service packages below to know more:</p>
+  <style>
+      .tab-item {
+          display: none;
+      }
+
+      .tab-item.active {
+          display: block;
+      }
+  </style>
+
+  <div class="tabs">
+    <input type="radio" id="tab1" name="tabs" checked>
+    <label for="tab1">Minor Service</label>
+
+    <input type="radio" id="tab2" name="tabs">
+    <label for="tab2">Full Service</label>
+
+    <input type="radio" id="tab3" name="tabs">
+    <label for="tab3">Major Service</label>
+
+    <div class="tab-content">
+      <div id="tab-item1" class="tab-item active">
+        <h3>Minor Service: €50</h3>
+        <h4>Checks</h4>
+        <ul>
+          <li>Check for superficial damages (bodywork, lamps, number plates, etc.)</li>
+          <li>Check lights, switches and horn</li>
+          <li>Check windscreen wipers, washers and mirrors</li>
+        </ul>
+        <h4>Top Up</h4>
+        <ul>
+          <li>Top up under bonnet fluids</li>
+          <li>Top up brake and clutch fluids</li>
+          <li>Top up anti-freeze</li>
+        </ul>
+        <h4>Advise</h4>
+        <ul>
+          <li>Advise on required repairs, if any</li>
+        </ul>
+      </div>
+
+      <div id="tab-item2" class="tab-item">
+        <h3>Full Service: €150</h3>
+        <h4>Checks and Adjustments</h4>
+        <ul>
+          <li>Check for superficial damages (bodywork, lamps, number plates, etc.)</li>
+          <li>Check lights, switches and horn</li>
+          <li>Check windscreen wipers, washers and mirrors</li>
+          <li>Check oil and coolant leaks</li>
+          <li>Check timing belt</li>
+          <li>Check brake servos and handbrake</li>
+          <li>Check springs and steering</li>
+          <li>Check exhaust</li>
+        </ul>
+        <h4>Top Up</h4>
+        <ul>
+          <li>Top up under bonnet fluids</li>
+          <li>Top up brake and clutch fluids</li>
+          <li>Top up anti-freeze</li>
+        </ul>
+        <h4>Engine</h4>
+        <ul>
+          <li>Drain and refill engine oil</li>
+          <li>Replace oil filter</li>
+        </ul>
+        <ul>
+          <li>Advise on required repairs, if any</li>
+        </ul>
+      </div>
+
+      <div id="tab-item3" class="tab-item">
+        <h3>Major Service: €300</h3>
+        <h4>Checks and Adjustments</h4>
+        <ul>
+          <li>Check for superficial damages (bodywork, lamps, number plates, etc.)</li>
+          <li>Check lights, switches and horn</li>
+          <li>Check windscreen wipers, washers and mirrors</li>
+          <li>Check oil and coolant leaks</li>
+          <li>Check timing belt</li>
+          <li>Check brake servos and handbrake</li>
+          <li>Check springs and steering</li>
+          <li>Check exhaust</li>
+          <li>Check battery and connectors</li>
+          <li>Check alternator</li>
+          <li>Check air conditioning</li>
+          <li>Check valves</li>
+          <li>Check fuel tank</li>
+          <li>Check break pads, discs and other parts</li>
+          <li>Check tyres and wheels conditions and pressure</li>
+        </ul>
+        <h4>Top Up</h4>
+        <ul>
+          <li>Top up under bonnet fluids</li>
+          <li>Top up brake and clutch fluids</li>
+          <li>Top up anti-freeze</li>
+        </ul>
+        <h4>Engine</h4>
+        <ul>
+          <li>Drain and refill engine oil</li>
+          <li>Replace oil, air and fuel filters</li>
+          <li>Replace spark plugs</li>
+        </ul>
+        <ul>
+          <li>Advise on required repairs, if any</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <button class="userButton" onclick="window.location.href='/booking/vehicle'">Book Now</button>
+</div>
+
+<!-- Third Part -->
+<div class="other-parts">
+  <h2>Where we are</h2>
+  <p>Bring your vehicle or come have a chat with our mechanics!</p>
+  <!-- Embed Google Map with the given address -->
+  <!-- Code from https://blog.duda.co/responsive-google-maps-for-your-website -->
+  <iframe src="https://www.google.com/maps?q=30-34+Westmoreland+St,+Dublin+2,+D02+HK35&output=embed" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+
+<script th:inline="javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var tabInputs = document.querySelectorAll('input[name="tabs"]');
+    Array.prototype.forEach.call(tabInputs, function(input) {
+      input.addEventListener('change', function() {
+        var tabItemId = this.id.replace('tab', 'tab-item');
+        var tabItems = document.querySelectorAll('.tab-item');
+        Array.prototype.forEach.call(tabItems, function(tabItem) {
+          tabItem.classList.remove('active');
+        });
+        document.getElementById(tabItemId).classList.add('active');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

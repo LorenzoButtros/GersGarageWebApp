@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking - Service</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="other-parts">
+  <h2>Booking - Select a Service</h2>
+  <p>Choose the service or repair below:</p>
+</div>
+<div class="other-parts">
+  <form action="/booking/service" method="post" th:object="${selectedService}">
+    <label class="book-label" for="service">Select a service:</label>
+    <select id="service" name="selectedServiceId" onchange="displayPrice(this)">
+      <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.service}" th:data-price="${service.price}"></option>
+    </select><br><br>
+    <label class="book-label">Base Price: €</label>
+    <span id="price"></span><br>
+    <br><br>
+    <button class="userButton" type="submit">Submit</button>
+  </form>
+</div>
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+<script>
+  var selectElement = document.getElementById('service');
+  var selectedIndex = selectElement.selectedIndex;
+  var selectedService = selectElement.options[selectedIndex].dataset;
+  // Update the HTML elements with the selected service price
+  document.getElementById('price').textContent = selectedService.price;
+
+  function displayPrice(selectElement) {
+    var selectedIndex = selectElement.selectedIndex;
+    var selectedService = selectElement.options[selectedIndex].dataset;
+    // Update the HTML elements with the selected service price
+    document.getElementById('price').textContent = selectedService.price;
+  }
+</script>
+
+</body>
+</html>

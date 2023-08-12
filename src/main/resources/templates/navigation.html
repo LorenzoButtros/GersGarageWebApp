@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation Menu</title>
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<nav class="navigation-menu">
+    <div class="logo">
+        <img src="/images/gg-logo.png" alt="Logo">
+    </div>
+    <ul class="menu-items">
+        <li><a href="/">Home</a></li>
+        <li><a href="/service">Service</a></li>
+        <li><a href="/repair">Repair</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Account▼</a>
+            <ul class="dropdown-menu">
+                <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="/account/profile">Profile</a></li>
+                <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="/account/vehicles">Vehicles</a></li>
+                <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="/shop/cart">Shopping Cart</a></li>
+                <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="/auth/signout">Sign Out</a></li>
+                <li th:unless="${#authorization.expression('isAuthenticated()')}"><a href="/auth/signup">Sign Up</a></li>
+                <li th:unless="${#authorization.expression('isAuthenticated()')}"><a href="/auth/signin">Sign In</a></li>
+            </ul>
+        </li>
+        <li><a href="/admin">Admin</a></li>
+    </ul>
+</nav>
+</body>
+</html>

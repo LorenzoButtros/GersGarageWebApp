@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Accessories</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Admin - Accessories</h1>
+
+<button class="userButton" onclick="window.location.href='/admin/accessories/create'">Create Accessory</button>
+<button class="userButton" onclick="window.location.href='/admin'">Back to Menu</button>
+
+<table class="user-table">
+    <tr>
+        <th>ID</th>
+        <th>Item</th>
+        <th>Brand</th>
+        <th>Section</th>
+        <th>Price</th>
+        <th>In Stock</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="accessory : ${accessories}">
+        <td th:text="${accessory.id}"></td>
+        <td th:text="${accessory.item}"></td>
+        <td th:text="${accessory.brand}"></td>
+        <td th:text="${accessory.section}"></td>
+        <td th:text="${accessory.price}"></td>
+        <td th:text="${accessory.instock}"></td>
+        <td th:text="${accessory.description}"></td>
+        <td th:text="${accessory.image}"></td>
+        <td>
+            <a class="edit-link" th:href="@{/admin/accessories/update/{id}(id=${accessory.id})}">Edit</a>
+            <a class="delete-link" th:href="@{/admin/accessories/delete/{id}(id=${accessory.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="first-part">
+  <div class="first-part-text">
+    <h2>Account - Profile</h2>
+    <p>Hi! This is your profile:</p>
+  </div>
+</div>
+<div class="second-part">
+  <!-- Vehicle selection form -->
+  <button class="userButton" onclick="window.location.href='/'">Back to Home</button>
+
+  <table class="user-table">
+    <tr>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Mobile</th>
+    </tr>
+    <tr>
+      <td th:text="${user.email}"></td>
+      <td th:text="${user.firstName}"></td>
+      <td th:text="${user.lastName}"></td>
+      <td th:text="${user.mobile}"></td>
+    </tr>
+  </table>
+</div>
+<br><br>
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+</body>
+</html>

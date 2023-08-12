@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking - Done</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="first-part">
+  <div class="first-part-text">
+    <h2>Booking - Done</h2>
+    <p>Your booking has been saved. We'll contact you by phone on the day of your service.</p>
+    <form action="/" method="get">
+      <button class="userButton" type="submit">Back to Home</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+</body>
+</html>

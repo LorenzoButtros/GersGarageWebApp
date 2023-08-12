@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Edit</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Admin - Edit Schedule</h1>
+
+<form class="update-form" action="/admin/schedule/edit" method="post" th:object="${booking}">
+
+    <input type="hidden" id="id" name="id" th:value="${booking.id}">
+    <input type="hidden" id="user" name="user" th:value="${booking.user}">
+    <input type="hidden" id="vehicle" name="vehicle" th:value="${booking.vehicle}">
+    <input type="hidden" id="service" name="service" th:value="${booking.service}">
+    <input type="hidden" id="datein" name="datein" th:value="${booking.datein}">
+    <input type="hidden" id="timein" name="timein" th:value="${booking.timein}">
+    <input type="hidden" id="dateout" name="dateout" th:value="${booking.dateout}">
+    <input type="hidden" id="timeout" name="timeout" th:value="${booking.timeout}">
+
+    <label for="status">Status:</label>
+    <select class="form-input" id="status" name="status" required th:field="*{status}">
+        <option value="Booked">Booked</option>
+        <option value="In Service">In Service</option>
+        <option value="Completed">Completed</option>
+        <option value="Unrepairable">Unrepairable</option>
+        <option value="Cancelled">Cancelled</option>
+    </select><br><br>
+
+    <label for="price">Price:</label>
+    <input class="form-input" type="text" id="price" name="price" required th:field="*{price}"><br><br>
+
+    <label for="staffId">Staff:</label>
+    <select class="form-input" id="staffId" name="staffId" th:field="*{staff}" onchange="displayServices(this)">
+        <option value=""></option>
+        <option th:each="staffSC : ${staffMap}" th:value="${staffSC.value.staff.id}" th:data-service-count="${staffSC.value.serviceCount}" th:selected="${staffSC.key == booking.staff}">
+            <span th:text="${staffSC.value.staff.name}"></span>
+        </option>
+    </select>
+    <br>
+    <label>Staff's services in this day (Max. 4):</label>
+    <span id="staffServices"></span><br>
+    <br><br>
+
+    <button id="confirmButton" class="form-button" type="submit">Confirm</button>
+</form>
+
+<a class="userButton" th:href="@{/admin/schedule/view/{date}(date=${booking.datein})}">Back to Day Schedule</a>
+<button class="userButton" onclick="window.location.href='/admin/schedule'">Back to Month Schedule</button>
+
+<script>
+    var serviceTime = [[${serviceTime}]];
+
+  function displayServices(selectElement) {
+    var selectedIndex = selectElement.selectedIndex;
+    var confirmButton = document.getElementById('confirmButton');
+
+    if (selectedIndex !== 0) {
+        var selectedOption = selectElement.options[selectedIndex];
+        var serviceCount = parseInt(selectedOption.dataset.serviceCount);
+        var totalServices = serviceCount + serviceTime; // Change 'serviceTime' to the appropriate value
+        document.getElementById('staffServices').textContent = serviceCount;
+
+        if (totalServices > 4) {
+            confirmButton.disabled = true;
+        } else {
+            confirmButton.disabled = false;
+        }
+    } else {
+        document.getElementById('staffServices').textContent = '';
+        confirmButton.disabled = false;
+    }
+  }
+
+  displayServices(document.getElementById('staffId'));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Staff</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Create Staff</h1>
+
+
+<form class="create-form" action="/admin/staff" method="post" th:action="@{/admin/staff}" th:object="${staff}">
+    <label for="name">Name:</label>
+    <input class="form-input" type="text" id="name" name="name" required><br><br>
+    <button class="form-button" type="submit">Create</button>
+    <button class="userButton" onclick="window.location.href='/admin/staff/'">Back to Staff</button>
+
+</form>
+
+</body>
+</html>

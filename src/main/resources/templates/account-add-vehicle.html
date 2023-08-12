@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Vehicle</title>
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Add Vehicle</h1>
+
+<button class="userButton" onclick="window.location.href='/account/vehicles'">Back to Vehicles</button>
+
+<form class="create-form" action="/account/vehicles/add" method="post" th:action="@{/account/vehicles/add}" th:object="${vehicle}">
+    <label for="license">License:</label>
+    <input class="form-input" type="text" id="license" name="license" required><br><br>
+    <label for="type">Type:</label>
+    <select class="form-input" id="type" name="type" required>
+        <option value="Car">Car</option>
+        <option value="Motorbike">Motorbike</option>
+        <option value="Van">Van</option>
+        <option value="Small Bus">Small Bus</option>
+    </select><br><br>
+    <label for="make">Make:</label>
+    <select class="form-input" id="make" name="make" required>
+        <option th:each="make : ${makes}" th:value="${make.id}" th:text="${make.make}"></option>
+    </select><br><br>
+    <label for="color">Color:</label>
+    <input class="form-input" type="text" id="color" name="color" required><br><br>
+    <label for="engine">Engine:</label>
+    <select class="form-input" id="engine" name="engine" required>
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Hybrid">Hybrid</option>
+        <option value="Electric">Electric</option>
+    </select><br><br>
+    <button class="form-button" type="submit">Add</button>
+</form>
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+</body>
+</html>

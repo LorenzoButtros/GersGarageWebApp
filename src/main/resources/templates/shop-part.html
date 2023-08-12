@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop - Part</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="first-part">
+  <div class="first-part-text">
+    <h1>Shop - Parts</h1>
+  </div>
+  <div class="first-part-image">
+    <img th:src="@{'/images/' + ${part.image}}" th:alt="${part.part}">
+  </div>
+</div>
+
+<div class="other-parts">
+  <h2 th:text="${part.part}">Part</h2>
+  <br>
+  <label th:text="'Description: ' + ${part.description}"></label>
+  <br><br>
+  <label th:text="'Price: €' + ${part.price}"></label>
+</div>
+
+<button class="userButton" onclick="window.location.href='/shop/cart'">Add to Shopping Cart</button>
+<br>
+<button class="userButton" onclick="javascript:history.back()">Back to Makes</button>
+
+<!-- Third Part -->
+<div class="other-parts">
+  <h2>Where we are</h2>
+  <p>Bring your vehicle or come have a chat with our mechanics!</p>
+  <!-- Embed Google Map with the given address -->
+  <iframe src="https://www.google.com/maps?q=30-34+Westmoreland+St,+Dublin+2,+D02+HK35&output=embed" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+
+<script th:inline="javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var tabInputs = document.querySelectorAll('input[name="tabs"]');
+    Array.prototype.forEach.call(tabInputs, function(input) {
+      input.addEventListener('change', function() {
+        var tabItemId = this.id.replace('tab', 'tab-item');
+        var tabItems = document.querySelectorAll('.tab-item');
+        Array.prototype.forEach.call(tabItems, function(tabItem) {
+          tabItem.classList.remove('active');
+        });
+        document.getElementById(tabItemId).classList.add('active');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

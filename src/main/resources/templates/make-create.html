@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Make</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Add Make</h1>
+
+
+<form class="create-form" action="/admin/makes" method="post" th:action="@{/admin/makes}" th:object="${make}">
+    <label for="make">Make:</label>
+    <input class="form-input" type="text" id="make" name="make" required><br><br>
+
+    <button class="form-button" type="submit">Add</button>
+    <button class="userButton" onclick="window.location.href='/admin/makes/'">Back to Makes</button>
+
+</form>
+
+</body>
+</html>

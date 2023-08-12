@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Makes</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Admin - Makes</h1>
+
+<button class="userButton" onclick="window.location.href='/admin/makes/create'">Add Make</button>
+<button class="userButton" onclick="window.location.href='/admin'">Back to Menu</button>
+
+<table class="user-table">
+    <tr>
+        <th>ID</th>
+        <th>Make</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="make : ${makes}">
+        <td th:text="${make.id}"></td>
+        <td th:text="${make.make}"></td>
+        <td>
+            <a class="edit-link" th:href="@{/admin/makes/update/{id}(id=${make.id})}">Edit</a>
+            <a class="delete-link" th:href="@{/admin/makes/delete/{id}(id=${make.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

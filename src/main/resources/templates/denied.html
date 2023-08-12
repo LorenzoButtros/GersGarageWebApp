@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Access Denied</title>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<!-- First Part -->
+<div class="first-part">
+  <div class="first-part-text">
+    <h2>Access Denied</h2>
+    <p>Your account doesn't have permission to access the admin section.</p>
+    <br>
+    <button class="userButton" onclick="javascript:history.back()">Back</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<div th:insert="~{footer :: body}"></div>
+
+</body>
+</html>

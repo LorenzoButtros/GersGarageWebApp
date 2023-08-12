@@ -1,0 +1,160 @@
+
+body {
+    background-color: #efefef;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+p {
+    font-size: 1em;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1em;
+}
+
+li {
+    font-size: 1.2em;
+}
+
+label {
+    font-size: 1.5em;
+}
+
+body > div > div > label {
+    font-size: 0.75em;
+}
+
+body > div > div {
+    font-size: 1.3em;
+}
+
+.tabs {
+    margin-top: 30px;
+}
+
+.tabs > label {
+    font-size: 1.1em;
+    margin-right: 20px;
+
+}
+
+.tab-item > ul > li {
+    font-size: 0.9em;
+}
+
+
+.navigation {
+    background-color: #1e90ff;
+    color: #ffffff;
+    font-size: 1em;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+
+}
+
+.book-label {
+    font-size: 1em;
+}
+
+.first-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align child divs to the top */
+  padding: 20px;
+}
+
+.first-part-text {
+  width: 66%;
+  text-align: left;
+}
+
+.first-part-image {
+  width: 34%;
+  text-align: right;
+}
+
+.first-part-image img {
+  width: 100%;
+  max-width: 400px;
+}
+
+
+.other-parts {
+    padding: 20px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.button-item img {
+    width: 100%;
+}
+
+.userButton {
+  font-size: 1.5em;
+  background-color: blue;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  border: solid;
+  border-size: 0.3em;
+  border-color: #1e90ff;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 150px;
+}
+
+body > div > div > img, div > iframe {
+    border: solid;
+    border-size: 0.3em;
+    border-color: #1e90ff;
+    border-radius: 4px;
+}
+
+.first-part-image > img {
+    border: none;
+    border-size: 0em;
+    border-color: #1e90ff;
+    border-radius: 0px;
+}
+
+.userButton img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.userButton:hover {
+  background-color: #1e90ff;
+}
+
+.price {
+    font-size: 1.1em;
+    margin-top: 15px;
+}

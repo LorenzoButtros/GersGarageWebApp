@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-options.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+</head>
+<body>
+<!-- Navigation -->
+<div class="navigation" th:insert="~{navigation :: body}"></div>
+
+<h1 class="page-title">Create User</h1>
+
+
+<form class="create-form" action="/admin/users" method="post" th:action="@{/admin/users}" th:object="${user}">
+    <label for="firstName">First Name:</label>
+    <input class="form-input" type="text" id="firstName" name="firstName" required><br><br>
+    <label for="lastName">Last Name:</label>
+    <input class="form-input" type="text" id="lastName" name="lastName" required><br><br>
+    <label for="email">Email:</label>
+    <input class="form-input" type="email" id="email" name="email" required><br><br>
+    <label for="mobile">Mobile Number:</label>
+    <input class="form-input" type="text" id="mobile" name="mobile" required><br><br>
+    <label for="password">Password:</label>
+    <input class="form-input" type="password" id="password" name="password" required><br><br>
+    <label for="role">Role:</label>
+    <select class="form-input" id="role" name="role" required>
+        <!-- Loop through the Role enum and populate the dropdown menu -->
+        <option th:each="role : ${T(com.garage.garage.model.Role).values()}"
+                th:value="${role}" th:text="${role}" th:selected="${role == user.role}">
+        </option>
+    </select><br><br>
+    <button class="form-button" type="submit">Create</button>
+    <button class="userButton" onclick="window.location.href='/admin/users/'">Back to Users</button>
+
+</form>
+
+</body>
+</html>
+
